@@ -1,0 +1,54 @@
+.div-ele{
+    outline: 2px solid greenyellow;
+    background-color: yellow;
+}
+
+.span-ele{
+    outline: 2px solid red;
+    background-color: pink;
+}
+
+.inline-block-attr{
+    width: 400px;
+    height: 100px;
+    margin: 30px 35px 40px 45px;
+    padding: 30px 35px 40px 45px;
+}
+
+.img-ele{
+    width: 100px;
+    margin: 30px 35px 40px 45px;
+    padding: 30px 35px 40px 45px;
+}
+
+#inline-block-ele{
+    outline: 2px solid red;
+    display: inline-block;
+    background-color: pink;
+}
+
+#div-ele-width-height{
+    width: 600px;
+    height: 60px;
+}
+
+#span-ele-width-height{
+    width: 200px;
+    height: 150px;
+}
+
+#div-ele-margin{
+    margin: 35px 25px 30px 40px;
+}
+
+#span-ele-margin{
+    margin: 35px 45px 30px 85px;
+}
+
+#div-ele-padding{
+    padding: 35px 25px 30px 40px;
+}
+
+#span-ele-padding{
+    padding: 35px 45px 30px 85px;
+}

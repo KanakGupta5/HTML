@@ -1,0 +1,2 @@
+*** Developer tools: ***
+1. if 'type' is 'document' then HTML is the response

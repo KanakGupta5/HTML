@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline VS Block Element</title>
+    <link rel="stylesheet" href="./style.css">
+    </link>
+</head>
+
+<body>
+    <div>
+        <h2>Block Elements:</h2>
+        <ul>
+            <li>They by default take width of their parent</li>
+            <li>Width, height, padding and margin are respected</li>
+            <li>They always break on new line</li>
+            <li>They always stack vertically(on top of each other) irrespective of the free space</li>
+            <li>eg &lt;div&gt;, &lt;p&gt;, &lt;h1&gt;, &lt;ul&gt;</li>
+        </ul>
+    </div>
+    <hr>
+    <div>
+        <h2>Inline Elements:</h2>
+        <ul>
+            <li>They take width of the content present in them</li>
+            <li>Width, height and margin(top bottom) are not respected</li>
+            <li>They doesn't break on new line</li>
+            <li>They always stack horizontally(adjacent to each other)</li>
+            <li>Inline elemens have two category: <b>Replaced</b> and <b>Non-replaced</b> </li>
+            <li>eg &lt;span&gt;, &lt;a&gt;, &lt;b&gt;, &lt;i&gt;</li>
+        </ul>
+    </div>
+    <hr>
+    <div>
+        <h2>Inline Block Elements:</h2>
+        <ul>
+            <li>They by default take width of the content present in them. But they respect explicit height and width
+                properties.</li>
+            <li>They respect padding/margin on all four sides.</li>
+            <li>Unlike block elements, they expands in the same horizontal line</li>
+        </ul>
+    </div>
+    <hr>
+    <div>
+        <h2>Replaced Inline Elements</h2>
+        <ul>
+            <li>They are inline elements but behaves like inline-block</li>
+            <li>They respects the attributes(height, width, padding and margin) like block elements.</li>
+            <li>They sits in the same horizontal space like inline elements</li>
+            <li>Eg. &lt;img&gt;, &lt;iframe&gt;</li>
+            <li>Since the content of such elements is defined by external source which is out of the CSS, this elements
+                behaves this way</li>
+        </ul>
+    </div>
+    <hr>
+    <h4>Case: By default width/height</h4>
+    <div class="div-ele">
+        Div takes full width <span class="span-ele"> Span takes width of its content</span> Dummy content Dummy
+        content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content
+        Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy
+        content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content
+    </div>
+    <h4>Case: Explicitly width/height impact</h4>
+    <div id="div-ele-width-height" class="div-ele">
+        Div is affected by the width/height property <span id="span-ele-width-height" class="span-ele"> but span
+            remains unaffected</span>
+    </div>
+    <h4>Case: Explicitly margin impact</h4>
+    <div id="div-ele-margin" class="div-ele">
+        Div is affected by the margin property <span id="span-ele-margin" class="span-ele"> but span
+            remains unaffected by margin top and bottom. It is impacted by margin left and right.</span> Dummy content
+        Dummy
+        content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content
+        Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content
+    </div>
+    <h4>Case: Explicitly padding impact</h4>
+    <ul>
+        <li> (a) div vs span</li>
+    </ul>
+    <div id="div-ele-padding" class="div-ele">
+        Div is affected by the padding property <span id="span-ele-padding" class="span-ele"> span
+            behaves weird for padding top and bottom property. It doesnt push surrounding elements away</span> Dummy
+        content Dummy
+        content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content
+        Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content
+    </div>
+    <ul>
+        <li> (b) div vs div</li>
+    </ul>
+    <div id="div-ele-padding" class="div-ele">
+        Div is affected by the padding property <div id="span-ele-padding" class="span-ele"> For better comparision, a
+            div is placed here. It does push surrounding elements away</div> Dummy content Dummy
+        content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content
+        Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content Dummy content
+    </div>
+    <h4>Case: Inline block elements</h4>
+    <div class="div-ele">This is block element
+        <div id="inline-block-ele" class="inline-block-attr">This is inline-block element which spans horizontally, and
+            respect all the attibutes(height, width, margin and padding)</div>
+        <div id="inline-block-ele">This is also inline-block element, and they by default take width of the content
+            inside them.</div>
+    </div>
+    <h4>Case: Replaced elements</h4>
+    <div class="div-ele">
+        A replaced elements respects(height, width, padding and margin though it is an inline element)
+        <img class="img-ele span-ele" src="./Bird Image.jpeg" alt="Bird Image">
+    </div>
+
+</body>
+
+</html>
