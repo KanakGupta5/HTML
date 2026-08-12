@@ -1,0 +1,1053 @@
+/* 
+Youtube -> Future full stack
+https://www.youtube.com/watch?v=-G-zic_LS0A  ---> Part 1
+https://www.youtube.com/watch?v=1ra4yeyjFFc  ---> Part 2
+
+6:35:37
+
+Use 'OPEN COLORS' for the colors and shades
+
+By default the total width and height of a box will be the sum of the content width and height, padding and border
+    - Do not manually set height property of elements(individual/section elements)
+    - Do not manually set width property of individual elements(h1 p ul etc) but it can be set on section elements(div section etc)
+    - Width and height can be applied to some inline elements(img input select textarea button) but not on all inline elements like span, a, sub, sup 
+    - Box Sizing
+        - By default Width and height are specified for the content, those values never include the padding or border because the default value for box sizing is set to content-box;
+        - 'border-box' is most commonly used value for box-sizing. hence we generally place universal selector with this value i.e. * {box-sizing: border-box} 
+        - In 'border-box' the width amd height we define include the padding and border values.
+It is generally preferred that if x is vertical padding then 2x is horizontal padding
+Use <ul> for the button list and <li> for each button.
+    - eg <ul>
+        <li><a href="#">Button 1</a></li>
+        <li><a href="#">Button 2</a></li>
+        </ul>
+Use semantic html elements as they are good for SEO
+    - eg for hero section use <header><section>...</section></header>
+
+BORDER RADIUS
+    - Pills : Fully rounded corners are created from rectangles by setting border radius equal to half the elements height
+    - Circle : These are created out of squares i.e.e element having same height and width by setting the border radius as half of the height
+    
+MARGIN
+    - Be consistent, either use margin-bottom or margin-top throught the project.
+    - Commonly, margin-top or margin-bottom is the only property we use to create space between elements. Creating space horizontally is preferred to set through gap property.
+    - For centering the container, apply margin-left and margin-right to auto. 'auto' itself divides the horizontal space available equally resulting in the centering of container.
+
+DISPLAY
+    - permissible values: block/inline/inline-block/flex/grid
+    - Each property(height, width, padding, border and margin) works as expected for block elements.
+    - For inline elements, width and height cannot be set. Padding and border is applicable but it only pushes content away horizontally. Margin is applied only horizontally
+        - REGULAR INLINE ELEMENTS : 
+                                    - They do not start on new line
+                                    - occupies width of their content
+                                    - width and height cannot be set
+                                    - padding margin and border do not apply as expected
+                                    - a, span sub sup
+        - REPLACED INLINE ELEMENTS : Inline Elements where the content is sourced externally and is not part of the html markup.
+                                    - They do not start on new line
+                                    - occupies width of their content
+                                    - width and height can be set
+                                    - padding borders adn margin apply as expected
+                                    - img , input , select, textarea
+                                     
+    - For inline-block, they doesn't start on new line and occupies width and hieght as specified. Additionaly, width height margin padding border can be applied.
+        - It is common to apply inline-block to inline elements so they flow inline.
+
+MAX-WIDTH
+    - It behaves differently depending on the display property of the html element.
+    - Block elements:
+        - if max-width of element is set to 200px and the browser's width is 1000px, the element will take 200px, but if the browser's width becomes 100px then the element's width will become 100px.
+        - it is advised to keep max-width on wrapper/main container
+    - Inline elements
+        - max-width alone has no impact on inline element
+        - combine max-width along with width: 100% to have an impact
+    PS: for small icons i.e img tag, we genrally prefer fix width as they are rendered small.
+
+MIN WIDTH
+    - same as max-width, It behaves differently depending on the display property of the html element.
+    - Block Elements:
+        - If the element's min-width is set to 1200px, then either the browser's width is 1800px or 1000px, element's width will remain 1200px in both the cases.
+        - Useful formaintaining a section width in a grid layout so it does not become too narrow.
+    - Inline Elements:
+        - If the element's min-width is set to 200px and the content inside it takes 300px then the element's width will be 300px. But if the content takes 50px then the element's width will be 200px.
+
+MAX HEIGHT
+    -  only applies when content exceeds the limit. It is genrally used on MODALS.
+    - Block Elements:
+        - if the content inside the element is of 500px and the element's max-height is set to 300px, then the content till 300px will fit in and rest of it will overflow with element's height as 300px. 
+          Where as if the max-height of element is set to 1000px then the content will not overflow and element's height will remain 500px.
+    PS: FIxed height is preferred for nav bar.
+
+OVERFLOW
+    - permissible values: visible/hidden/scroll/auto
+        - visible: overflow content will be visible. By default overflow is set to visible
+        - hidden: the overflow content will be cut off.
+        - scroll: scrollbar is present even if the content is not overflowing
+        - auto: scrollbar only when necessary i.e. when the content is overflowing
+
+MIN-HEIGHT
+    - Block Elements
+        - If the content height is 500px and the element's min-height is set to 1000px then the element's height will be 1000px.
+          But if the min-height is set to 400px then the element's height will be 500px.
+        
+CSS UNITS:
+    - Relative units are essential for responsive webpages
+    - Absolute Units
+        - e.g px(used in border radius, border, letter spacing, logo and icons, max-width, shadows) pt in cm mm
+        - px is generally used where the value is small i.e. 5-10px so that they do not have much impact when the screen size changes
+    - Relative Units
+        - elements scale proportionally based on 'parent container'(percentages) size or 'scalable reference points'(rems).
+        - e.g % em rem vh vw
+        - used in containers(main div), box model properties(padding margin) and font size
+        - % unit
+            - Relative to parent: used in width, height, margin, padding 
+            - Relative to element: used in line height
+            - % are used in conjuction with max-width on main containers so that the webpage is fully responsive
+            - % are used in conjuction with max-width on standalone images so that the webpage is fully responsive
+            - It is common to set images inside a grid or flex container to 100% so it fills the cell and adapts responsively
+            - There are cases when you want to set a button width to 100% so it fills its container and adapts responsively
+            - % are used for fully rounded corners(pills: border-radius) as pixels require manual calculation
+        - rems (IMPORTANT)
+            - relative to the root elements(<html> tag) font size(which is 16px) and are the key ingredient for creating responsive webpages
+            - i.e. 2rems = 2 x 16px = 32px
+            - used for font-size, padding, margin
+            - WE SET HTML {FONT-SIZE: 62.5%} for 10px
+        - ems (not so important)
+            - it is more context specific(closer) compared to rems. As rems depends upon root element but ems depend upon the immediate parent
+            - Typography
+                - relative to the font size of the parent
+                - font-size, line-height, letter-spacing
+                - eg <div class="feature-parent"><div class="feature-child"></div></div>, feature-parent {font-size: 13px} feature-child{font-size: 2em} ----> 2em = 2 x 13px = 26px
+            - Other properties
+                - relative to the font-size of the element itself
+                - width height margin padding
+                - <body><a href="google.com">Click Me</a></body>, a {font-size: 50px; padding: 0.4em 0.8em; border-radius: 0.4em; display: inline-block}
+                - it provide a higher level of precision for styling smaller components as sizing is based on font-size of the element itself.
+        - vh(view height) and vw(view width) - (not important)
+            - they are a percentage of the browsers visible window
+            - vh can be used on hero sections in conjuction with min-height so content is always above the fold
+            - vw can be useful for creating responsive text when it is a main standalone element and not confined within a container
+
+CSS Variables
+    - how to define   -->   --primary: #339af0; where primary is variable name prefixed with --
+    - how to consume  -->   background-color: var(--primary);
+    - they are st in root pseudo class 
+        - a special pseudo class selector that matches the root element in a documents hierarchy
+        - eg. :root {--primary: #339af0}
+
+CSS Calculation
+    - perform dynamic calculations while setting values
+    - eg. calc((100%/3) - 50px)
+
+FLEX BOX
+    - has two main components: flex container(parent) and flex items(child)
+    - 'display: flex' is declared on flex container(parent). other values are block, inline, inline-block and grid
+    - when display: flex is applied on parent(flex container), dont think of its childer as block or inline elements, consider them as flex items to which box properties can be applied whether they are <a>(inline element) or <div>(block element)
+    - no flexbox vs flexbox
+        - in no flexbox: display: block is declared on child elements
+        - in flexbox: display: flex is applied on parent container and subsequent child elements are stacked in a row.
+        - main axis -> x axis(left to right), cross axis -> y axis(top to bottom)
+
+    - FLEX DIRECTION
+        - controls orientation of the main axis
+        - it is defined on flex container(parent)
+        - permissible values: row(default value), row-reverse, column, column-reverse
+            - row -> left to right (main axis -> x axis, cross axis -> y axis(top to bottom))
+            - row-reverse -> right to left (main axis -> x axis, cross axis -> y axis(top to bottom))
+            - column -> top to bottom (main axis -> y axis(top to bottom), cross axis -> x axis(left to right))
+            - column-reverse -> bottom to top (main axis -> y axis(bottom to top), cross axis -> x axis(left to right))
+            
+    - JUSTIFY CONTENT
+        - sets how flex items are positioned along the main axis
+        - set on 'flex container'
+        - permissible values: flex-start(default), flex-end, center, space-between,space-around, space-evenly
+        - often used to align and space navigation bars
+        - NOTE: if flex direction: column then the height of flex container(in case of 'general block container) is determined by the maximun of heights of flex items and the main axis also changes to top-bottom, here if we set justify-content then there will no impact as the there is no space in the height along the main axis,
+          but if flex direction: column then the height of flex container(in case of 'set height container') is set(is determined by the sum of heights of flex items) and the main axis also changes to top-bottom, here if we set justify-content then there will be impact as the there can be space in the height along the main axis
+
+    - ALIGN ITEMS
+        - sets how flex items are positioned along the cross axis
+        - it is set on flex container
+        - permissible values: stretch(default), flex-start, flex-end, baseline, center
+        - If the flex container has align-items: stretch and the flex items have fixed height width then align-items: stretch will have no impact.
+        - commonly used on navigation menus and footers, positioning items inside a component in a flex box
+
+    - GAP
+        - sets uniform spacing between flex items on the main axis
+        - set on flex container 
+        - one can use margin to achieve the same, but it is genrally used when you want different spacing values between flex items
+
+    - NESTED FLEX BOX
+        - A flex item within a flex container can also function as a flex container itself, allowing for multi-level flex layouts
+
+    - Flex Item properties(These are applied on flex items)
+        - flexbox has properties that control the behaviour and positioning of flex items which are listed below:
+        - FLEX-GROW
+            - determines how flex-items expand to fill extra space in a container based on a set of proportions.
+            - 0 is the default value.
+            - consider the parent container is 1000px width and has 4 flex items each of 100px then the available space is 600px, consider the flex-grow values as 1, 2, 0 and 0 for flex item1, flex item2, flex item3 and flex item4 respectively. so the denominator is 1 + 2 + 0 + 0 = 3, so flex item1 will take (1/3) * 600px = 200px available space which makes its total width as 100px + 200px = 300px; Similarly for flex item2 it is (2/3) * 600px = 400px which makes its total width as 100px + 400px = 500px; So now the width of flex item1, flex item2, flex item3 and flex item4 as 300px, 500px, 100px and 100px respectively. 
+        - FLEX-BASIS
+        - FLEX-SHRINK
+            - determines how flex items shrink relative to others in a container where there isn't enough space i.e. opposite of flex grow
+            - default value is 1. Consider we have 1000px as the width of flex container and 4 flex items each with the width of 300px. All the 4 flex items will sum upto 1200px which is greater than the width of flex container, but the flex items will not overflow and will be forced to fit in the container which will make their width to be 250px(100px/4). In case of overflow all the flex items shrinked in the same proportion because of the default value 1. If the flex-shrink would have been set to 0 then the flex items would have been overflowed
+            - for above example, if the flex shrink values are 2, 6, 1 and 1 for flex item 1, 2, 3 and 4 respectively, then overflow space = 1000px - 1200px = 200 px; for flex item 1 (2/(2 + 6 + 1 + 1)) * 200px = (2/10) * 200px = 40px, which will result in width of 300px - 40px = 260px; Similarly for flex item 2 (6/(2 + 6 + 1 + 1)) * 200px = (6/10) * 200px = 120px which will result in width of 300px - 120px = 180px, Similarly for flex item 3 (1/(2 + 6 + 1 + 1)) * 200px = (1/10) * 200px = 20px which will result in width of 300px - 20px = 280px which will the same for flex item 4. SO now the width will be 260px, 180px, 280px and 280px for flex item 1, 2, 3 and 4.
+            - FLEX-WRAP
+                - pushes flex items onto multiple lines instead of being forced to fit on a single line when they exceed the container
+                - this property is set on flex-container and can only be used when flex items exceeds the width of flex container
+                - permissible values: wrap(default value), no wrap, wrap reverse
+                - works differently when flex container has no height vs set height
+                    - Case: when flex container has no height(also known as General Block container)
+                        - the flex item will be wrapped on the immediate next line/row. There will not be extra height space for flex container, it just expands as much as the wrapped flex items needs to be.
+                    - Case: when flex container has set height
+                        - the flex container height will be divided into two equal rows, the wrapped flex item will be placed from the start of the next row
+                - ALIGN CONTENT
+                    - controls the alignment of flex items along the cross axis when there are multiple rows of flex items
+                    - this is set on flex container and can only be used if we set 'flex wrap' property
+                    - permissible values: stretch(default value), flex start, flex end, center, space between and space around
+                - wrapping is useful for simple linear layout when elements need to wrap onto multiple lines. But instead of using flex-wrap we prefer to use grid layout.
+        - ALIGN-SELF
+            - sets individual flex items alignment by overriding the flex containers default align items value
+            - permissible values: auto(default value -> this allows the item to inherit the align-items value of the parent container), stretch, flex-start, flex-end, center and baseline
+        - ORDER
+            - changes the visual order of flex items independent of their order in the html markup
+            - 0 is the deafult value
+            - consider we have 4 flex items and we set 4, 0, -1, 0 as the order of flex item 1, 2, 3 and 4 respectively, then the order in which they will appear is flex item 3, 2, 4 and 1 i.e. increasing order of their 'order' values
+
+GRID
+    - It is a two-dimensional layout model making it simple to arrange items in rows and columns
+    - has two main components: grid container(analogous to flex container) and grid items(analogous to flex items)
+    - has two axis: column axis(vertical axis) and row axis(horizontal axis). Direction of these axis cannot be changed unlike in flex box where we can change direction through 'flex-direction' property
+    - grid has grid lines and grid cells
+    - NOTE: Grid items are not of same size as grid cells.
+    - grid lines define grid track which is fancy word for the rows and columns
+    - grid tracks that are rows may have space between them which is called horizontal gap where as grid tracks that are columns may have space between them which is called vertical gap.
+    - to enable grid layout, we set 'display: grid' on the parent container.
+        - the permissible values for 'display' are block, inline, inline-block, flex and grid
+        - by default all the grid items appear in a single column
+    - GRID TEMPLATE COLUMNS
+        - defines the number of columns and their width in a grid layout e.g grid-template-columns: 100px 200px 150px; (3 columns with width 100px, 200px and 150px respectively)
+        - By default, all the grid items are placed in single column and height of grid container is sum of grid items's height.
+        - it is set on 'grid container'
+        - FRACTIONAL UNIT
+            - eg. grid-template-columns: 1fr 3fr 4fr
+            - consider we have 1000px a stotal width of grid container then we have defined three columns, first column with width = (1/(1 + 3 + 4)) * 1000px = 125px, second column with width = (3/(1 + 3 + 4)) * 1000px = 375px and third column with width = (4/(1 + 3 + 4)) * 1000px = 500px
+        - columns are often set with fr units and the width of grid container is usually not set but extends width of the page
+        - the height of the grid container is not usually set but defined by the sum of the height of the grid items
+    - GRID TEMPLATE ROWS
+        - sets the number of rows and height of each
+        - e.g. grid-template-rows: 50px 100px 200px 300px defines 4 rows of these height
+        - FRACTIONAL UNIT
+            - depends if the height is set or not set on grid container
+            - if height is set on grid container, fr units proportionally distribute space to the grid items
+            - if no height is set on a grid container, fr units use the height of the grid items to set height and space on the grid container. For e.g. check summary cards
+        - this property is not generally used as we define columns and rows are automatically created based on the number of grid items and the number of columns defined. The height of each row is determined by the tallest grid item in that row.
+    - REPEAT FUNCTION
+         - used to repeat rows or column dimensions when they are recurring
+         - e.g. grid-template-columns: repeat(3, 100px); (creates 3 columns of 100px each)
+    - GRID GAP
+        - by default, grid items are placed next to each other with no spacing between them
+        - used to create space between grid cells and not grid items
+        - it is set of grid container
+        - ROW-GAP and COLUMN-GAP are used to create space between grid rows and grid columns respectively
+        - if you have set width/height on grid container and set row-gap/column-gap then the grid items will reduce in width/height to accomodate the gap space. If it is not set then the grid container will expand
+        - shorthand for grid-gap is gap property which can be used to set both row-gap and column-gap in one line e.g. gap: 20px 30px; (20px is row-gap and 30px is column-gap)
+    - GRID CELL ALIGNMENT
+        - grid items can be aligned inside grid cells if there is space available.
+        - JUSTIFY ITEMS
+            - aligns grid items inside a grid cell along the row axis
+            - permissible values: start, end, center, stretch(default value)
+            - it is set on grid container
+        - ALIGN ITEMS
+            - aligns grid items inside a grid cell along the column axis
+            - permissible values: start, end, center, stretch(default value)
+            - it is set on grid container
+        - it is common to use grid alignment properties when one grid item is larger than another
+        - it is common to use grid and flexbox in parallel to achieve more precise control of layout
+    - GRID ALIGNMENT(Not commmonly used)
+        - entire grid tracks can be aligned and distributed when there is extra space in the grid container
+        - JUSTIFY CONTENT
+            - aligns entire grid columns along the row axis
+            - permissible values: start(default value), end, center, space-between, space-around, space-evenly
+            - it is set on grid container
+        - ALIGN CONTENT
+            - aligns entire grid rows along the column axis
+            - permissible values: start(default value), end, center, space-between, space-around, space-evenly
+            - it is set on grid container
+    - NOTE: ALIGN ITEMS, JUSTIFY CONTENT and ALIGN CONTENT were also observed while reading flex box. 
+    - PLACING GRID ITEMS
+        - grid items are automatically placed in a grid based on the order they appear in the html.
+        - it is set on grid item
+        - GRID-ROW
+            - e.g. grid-row: 1/3; (grid item will start from row line 1 and end at row line 3)
+        - GRID-COLUMN
+            - e.g. grid-column: 2/4; (grid item will start from column line 2 and end at column line 4)
+        - it is used to achieve specific layouts i.e. when we have alternate layout as we have in Quill project
+    - SPANNING GRID CELLS (Check slide for better clarity)
+        - 'grid-row' and 'grid-column' can be used to have grid items span multiple rows or columns
+        - two syntax can be used:
+            - eg. grid-column: 1/4; (grid item will start from column line 1 and end at column line 4 occupying 3 columns and 1 row)
+            - eg. grid-row: 1 / span 2; (grid item will start from row line 1 and span 2 rows occupying 2 rows and 1 column)
+        - can be used to create visually interesting designs
+    - ALIGNING GRID ITEMS (NOT SO IMPORTANT)
+        - grid cell alignment can be overridden for individual items
+        - e.g. consider we have grid container with 6 grid items with 3 columns and 2 grids. On grid container we set {justify-items: center; align-items: center} which will make all the grid items center along the row axis and column axis. But if set {justify-self: end ---> row axis; align-self: start ---> column axis} on grid item 2, then it will be placed on top right corner of its respective grid cell.
+        - it is applied on grid item
+
+GRID vs FLEX BOX
+    - Flex box
+        - used for one-dimensional layouts(row or column) i.e. smaller UI
+        - e.g. navigation bar, footer, components(buttons, callouts, inside cards), hero sections, forms
+    - Grid
+        - used for two-dimensional layouts(rows and columns) i.e. larger UI
+        - e.g. features section, cards
+
+RESPONSIVE DESIGN
+    - Three pillars of responsive design:
+        - Relative units
+        - Fluid layouts
+        - Media queries
+    - MEDIA QUERIES
+        - It is always good practice if we put media queries in a separate css file.
+        - Syntax: @media (max-width: 500px) { 
+                h2 : {
+                    font-size: 3rem;
+                }
+              }
+              It says: if the browser width is less than or equal to 500px then set the font size of h2 to 3rem
+        - Consider we have below css
+                @media (max-width: 1000px) {
+                    h2 {
+                        font-size: 3rem;
+                    }
+                }
+                
+                @media (max-width: 700px) {
+                    h2 {
+                        font-size: 2rem;
+                    }
+                }
+
+                @media (max-width: 500px) {
+                    h2 {
+                        font-size: 1rem;
+                    }
+                }
+                
+                then if the browser has 300px as its width, then which css has to be applied from above as 300 < 500, 300 < 700 and 300 < 1000 too. We follow CSS cascade which means when we have conflicting styles then the last rule wins. Hence while defining media queries we define them in decreasing order of screen width
+            - but defining media queries for each and every element for each max-width is not good practice. Hence % are lot more used. we prefer to set units like rem and %
+                e.g @media (max-width: 62.5rem) { ------> here 1rem = 16px because it is based on default browser font size, so 62.5rem = 62.5 * 16px = 1000px and not 62.5 * 10px = 625px
+                        html {
+                            font-size: 50%;
+                        }
+
+                    }
+                    
+                    @media (max-width: 43.75rem) { ------> here 1rem = 16px because it is based on default browser font size, so 43.75rem = 43.75 * 16px = 700px and not 43.75 * 10px = 437.5px
+                        html {
+                            font-size: 40%;
+                        }
+                    }
+
+                    @media (max-width: 31.25rem) { ------> here 1rem = 16px because it is based on default browser font size, so 31.25rem = 31.25 * 16px = 500px and not 31.25 * 10px = 312.5px
+                        html {
+                            font-size: 30%;
+                        }
+                    }
+                    - now all the properties that are defined in rem will rezise automatically based on the font-size of html tag. Hence we do not need to define media queries for each and every element.
+                    - case: if we define like below css(check the calculations, it is very tricky)
+                       @media (max-width: 31.25rem) { ------> here 1rem = 16px because it is based on default browser font size, so 31.25rem = 31.25 * 16px = 500px and not 31.25 * 10px = 312.5px
+                            html {
+                                font-size: 30%; ------> 30% of 16px = 4.8px, hence 1rem = 4.8px
+                            }
+                            a {
+                                font-size: 1.2rem; -------> 1.2rem = 1.2 * 4.8px = 5.76px
+                            }
+                       }
+                       such css is extremely difficult as it requires a lot of mental math.
+
+            - it is advised to use rem values inside the max-width of media queries instead of px.
+    - Relative units
+        - % 
+            - used for containers(main div) and images
+        - rems
+            - used for margin and text(font-size, line-height, letter-spacing)
+            - the rem value inside a media query condition is always based on the default browser font size(16px)
+                - consider we have css
+                    html {
+                        font-size: 62.5%; -------> 1rem = 10px
+                    }
+                    
+                    h1 {
+                        font-size: 4rem; -------> 4rem = 4 * 10px = 40px
+                    }
+
+                    @media (max-width: 31.25rem) { ------> here 1rem still = 16px because it is based on default browser font size, so 31.25rem = 31.25 * 16px = 500px and not 31.25 * 10px = 312.5px
+                        ...
+                    }
+                    
+                    so inside media query if you wanted to set max-width as 1200px then 1200px/16px = 75rem. Note that we divided by 16px and not 10px because the rem value inside a media query condition is always based on the default browser font size(16px)
+                - rems inside media queries
+                    - 
+    - Fluid Layout
+        - when on bigger screens the grid is 4 x 2 but on small devices we want it to be 2 x 4.
+            @media (max-width: 62.5rem) {
+                .grid-container {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+    - Breakpoints
+        - a specific screen width where a webpage's layout changes
+        - knowing he ranges of common device screen sizes is helpful in thinking about breakpoints
+        - Phone portrait(xs) ---- 576px ---- Phone Landscape(sm) ---- 768px ---- Tablets(md) ---- 1024px ---- Small laptops(lg) ---- 1280px ---- Large Laptops(xl) ---- 1536px ---- Large Screens(2xl)
+    - CSS and Physical pixels
+        - A single point of light on a digital display
+        - Physical pixels 
+            - it doesnt have a fixed length and varies between screens. Hence if we define some html element with width: 100px, then it will be rendered differently on different screens. Hence there is concept of CSS pixels.
+        - PPI = pixels per inch.
+        - CSS Pixels 
+            - it has a fixed length i.e. 1/96 inches. When we define css pixels in our css files, the broswer it converts to the respective physical pixels based on the screen's PPI. Hence if we define some html element with width: 100px, then it will be rendered same on different screens.
+        - Pixels in dev tools vs devices
+            - dev tools -> CSS Pixel
+            - Device -> Physical pixels
+
+POSITIONING (SRAFS)
+    - Normal flow;
+        - Elements occupy their own designated 'slot' on he page which allows them to be surrounded by other elements.
+        - For better understanding of 'positioning' consider any element with two things: its 'slot' and the element itself.
+    - it determines how an element is positioned on the page
+    - permissible values: static(default), relative, absolute, fixed and sticky
+    - OFFSET
+        - offset properties are used to shift the element from its reference point
+        - to work with offset properties, we need to set position property to anything except 'static'
+        - offset properties: top, right, bottom, left
+        - to get the intuition of property, consider below sentence
+            - eg. top: 20px and read it like 'shift <20px> away from the <top> edge of the reference point', you can do the same with bottom, left and right properties
+    - STATIC POSITIONING
+        - when elements follow 'normal flow' i.e.e block elements will stack on top of each other
+    - RELATIVE POSITIONING
+        - the element follows the normal document flow but can be offset relative to itself
+        - let say we have three box elements stacked on top of each other as
+            -----------
+            |    BOX 1 |
+            -----------------
+            |      BOX 2    |
+            -----------------
+            |    BOX 3    |
+            --------------
+            let say we set position:relative on 'Box 2' then the other elements(Box 1 and Box 3) remain in position as the slot of the relatively positioned element remains present.
+            Consider this as we have two layers now, first layer has: Box 1, slot of Box 2 and Box 3(since slot of Box 2 is present above statement can be understood); Second layer has: Box 2 which now can be moved in this layer  with 'offset' properties
+            -----------
+            |    BOX 1 |
+            -----------------                                     -----------------
+            | SLOT OF BOX 2  |                                    |      BOX 2    |
+            -----------------                                     -----------------
+            |    BOX 3    |
+            --------------
+              Layer 1                                                Layer 2
+        - offset propertie:
+            - the reference point is the element's original position in the normal flow
+
+                        |
+                        |
+                        |                                       The extended lines represent the axis and '*' represents the reference point of the element
+                        | -----------
+                        |    BOX 1 |
+        ----------------*-----------------------------                                  
+                        | SLOT OF BOX 2  |                                  
+                        -----------------                                    
+                        |    BOX 3    |
+                        --------------
+                        |
+                        |
+                        |
+                        |
+                        |
+                    Layer 1
+            - if we dont apply any offset properties then the element will remain in its original position
+            - let say we apply top:20px on box 2
+            -----------
+            |    BOX 1 |
+            |          |
+
+            -------------------                             
+            | SLOT OF BOX 2    | 
+            |                  |   
+            --------------     |                                                            
+            |    BOX 3    |    |
+            --------------------  
+            |             |
+            --------------
+              Layer 1        
+            - check the slides/video for this again
+    - ABSOLUTE POSITIONING
+        - the element is removed from the normal document flow including its slot
+             -----------
+            |    BOX 1 |
+            -----------------
+            |      BOX 2    |
+            -----------------
+            |    BOX 3    |
+            --------------
+            Let say we set position: absolute on 'box 2' then the slot of 'box 2' is also removed and the other elements will shift accordingly. 'box 2' is now in new layer and can be moved using offset properties
+            -----------
+            |    BOX 1 |
+            ---------------                                    ---------------------
+            |    BOX 3    |                                    |      BOX 2         |
+            ---------------                                    ---------------------
+                Layer 1                                                Layer 2
+        - offset properties:
+            - the reference point is the root html element i.e. here it is mentioned by top edge, bottom edge, left edge and right edge of html element. Consider we apply top: 40px and left as 50px
+                --------------------------  Top edge  ---------------------------------------------
+                |                                                       <html>                    |
+                |                                                                                 |
+                |       -----------------------------------------------------------------         |
+                |       |   BOX 1  |                                 <parent div>       |         |
+                |       -----------------------                                         |         |
+                |       |             BOX 2    |                                        |         |
+                |       --------------         |                                        |         |
+                |       |             |        |                                        |         |
+                |       ------------------------                                        |         |
+                |       |     BOX 3   |                                                 |
+                        ---------------                                                 |         
+                l       |                                                               |         r
+                e       |                                                               |         i
+                f       |                                                               |         g
+                t       |                                                               |         h
+                        |                                                               |         t
+                e       |                                                               |         
+                d       |                                                               |         e
+                g       |                                                               |         d
+                e       |                                                               |         g
+                        |                                                               |         e
+                |       |                                                               |         
+                |       |                                                               |         |
+                |       |                                                               |         |
+                |       -----------------------------------------------------------------         |
+                |                                                                                 |
+                ----------------------    Bottom edge   -------------------------------------------
+            - if no offset properties are applied then the element will be positioned at its original position in its own layer i.e. layer 2
+            - the reference point can actually change! More commonly, the reference point is set by the nearest ancestor with a non static position(if any is present otherwise it is root(html) element)
+                e.g. if set position: relative on <parent div>, then the reference point will now be the edges of <aprent div> because it is the closest/nearest element to 'box 2' that has non-static position
+    - FIXED POSITIONING
+        - kind of special case of absolute positioning
+        - absolute positioning, but the element remains fixed relative to the viewport(browser) and is unaffected by scrolling. So it is the case of absolute positioning which is fixed to viewport.
+        - Alter: the element is removed from the normal document flow(including its slot) and is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled.
+
+    - STICKY POSITIONING
+        - kind of special case of absolute positioning
+        - the element is in normal document flow until a certain scroll point(it is referenced to viewport) when it then becomes fixed so it is fixed positioning which needs activation by hitting a certain scroll point.
+        - e.g in above case of fixed positioning, if we set position: sticky and top: 100px on 'box 2' then it will be in normal document flow until the top edge of 'box 2' is away 100px from the top edge of the viewport(browser) and then it will become fixed to the top edge of the viewport(browser).
+    - absolute positioning is more commonly used than relative because it removes elements from the document flow. This is preferred because the solt is removed so no unexpected gaps in layout.
+    - absolute positioning should be used as a last resort for very specific cases as it makes responsive design more challenging.
+    - fixed positioning is used for elements that need to be absolute positioned but also need to remain visible when the user scrolls. e.g floating icon like of chatbot
+    - sticky positioning is ideal for navbars, as they stay at the top in normal flow and then become fixed when the user scrolls.
+
+Z INDEX
+    - default behaviour : most web layouts have elements in the same 2D plane(which has z-index: 0) and do not overlap. But elements can overlap in the same plane with the stacking order being determined by the order they appear in html(this can be demostrated by using -ve margin values)
+    - z index controls the vertical stacking order of positioned elements(element that have position: relative/absolute/fixed/sticky).
+    - it only works on positioned elements and not on static elements
+    - elements with higher z-index values will be stacked on top of elements with lower z-index values. If two elements have the same z-index value, then the one that appears later in the HTML markup will be stacked on top.
+    - check slides for better understanding
+
+STACKING CONTEXT
+    - a positioned element with z-index creates a new stacking context, where its children are stacked independently of other elements.
+    - eg. --------------      ------------------------    -----------------------
+          | orange box1 |     |blue box2             |    | red box 4           |
+          | z-index: 2  |     | z-index: 1           |    | z-index: 0          |
+          ---------------     |  ------------------  |    -----------------------
+                              |  | black box3     |  |
+                              |  | z-index: 10    |  |
+                              |  ------------------  |
+                              |                      |
+                              ------------------------
+            Layer 1                 Layer 2                     Layer 3
+        z-index: 10 of 'box 3' has nothing to do with the z-index of 'layer 1' and 'layer 3', it only has significance in 'layer 2'. 
+        'box 3' will overlap 'box 2' because is has higher z-index. 
+        'box 1' will overlap 'box 2' 'box 3' and 'box 4' because it has higher z-index than all of them.
+        'box 2' and 'box 3' will overlap 'box 4' because they have higher z-index than 'box 4'.
+
+TRANSFORM
+    - applies visual transformations to an element like scaling, rotating, translating and skewing.
+    - Syntax: transform: scale(2, 0.5);
+    - permissible values: scale, skew, rotate, translate
+        - scale 
+            - resizes element horizontally and vertically
+            - transform: scale(x-axis scale factor, y-axis scale factor)
+            - often used when hovering over an image to create a dynamic visual effect
+        - skew
+            - distorts element by slanting it horizontally and vertically
+            - transform: skew(x-axis slant angle, y-axis slant angle)
+            - e.g transform: skew(20deg, 50deg)
+        - rotate
+            - rotates element around its center
+            - transform: rotate(45deg)
+        - translate
+            - moves element horizontally and vertically from its position
+            - translate: translate(x-axis translation, y-axis translation) e.g. translate: translate(50%, -200px)
+            - positioned elements and translate
+                - using positioning and translate together provides precise control over element placement.
+            - used in conjuction with 'position' property e.g. used on positioned modals to achieve precise centering within their containers
+            - used on positioned alerts to achieve precise alignment in the top right corner
+
+SHADOWS
+    - box-shadow: 10px -20px 5px 30px #6bb55c
+    - box-shadow: horizontal offset, vertical offset, blur radius, spread radius, color
+    - horizontal offset and vertical offset are required
+    - Guidance:
+        - can be used to add depth and dimension to a design to create separartion between UI elements
+        - shadows should be light, as darker shadows can create a harsh and unnatural appearance in the design
+        - smaller shadows are ideal for enhancing smaller components like buttons and cards which add subtle depth
+        - medium-sized shadows can be used for larger components, helping them stand out
+        - large shadows are used when an element should appear to be floating above the rest of the design
+
+TRANSITIONS
+    - default behaviour : when an element moves between states, the change occurs immediately
+    - transitions are used to create a smooth, gradual change to an elements properties when it undergoes a state change 
+    - Syntax: transition: background-color 0.3s ease-in-out;
+        - for multiple properties, transition: background-color 0.3s ease-in-out, border-radius: 4s;
+    - transition: <property(defaults to all properties of the element)> <duration(required)> <timing function(defaults to ease)>
+    - this is defined on initial state and not on pseudo state
+    - Timing Functions:
+        - controls the speed of the animation
+        - premissible values: linear, ease, ease-in, ease-out, ease-in-out
+    - Guidance
+        - transitions on buttons add subtle visual feedback
+
+CSS FRAMEWORKS
+    - it is a ready-made collection of css code to simplify & speed up the process of styling web pages
+    - any css framework will be built around one of the three core philosophies
+        - Component based
+            - provide ready-made UI parts
+            - class = "btn btn-primary"
+            - eg bootsrap
+        - utility based
+            - simple classes for styling
+            - class = "mb-8"
+            - eg. tailwind css
+        - css in js
+            - work with css directly inside js
+            - eg. styled components
+    - TAILWIND
+        -
+    - BOOTSTRAP
+        - it is component based(core philosophy) css framework for building responsive websites with pre-designed components(buttons, cards, nav bar) and utilities(simple classes)
+        - History of bootstrap
+            - developed at twitter
+            - was initially developed in response to major limitations in css layout features
+            - in 2017 the flexbox and css grid were fully implemented, before that in 2011 bootstrap released with grid system and components
+
+CENTERING 
+    - Horizontal centering
+        - Container
+            - various methods as below:
+                - flex box
+                    - justify content: center when flex-direction: row;
+                    - align-items: center when flex-direction: column;
+                - box model properties: 
+                    - margin: 0 auto(applied on child container);
+        - content inside container
+            - box model properties
+                - padding: 0 200px(applied on child container);
+            - flex box
+                - padding: 0 200px;(applied on flex item)
+    - Vertical centering(Parent container has a set height because otherwise the height of the container will be the hieght of its child item and there will be no space left for centering)
+        - Container
+            - Box model
+                - no easy way
+            - flex model
+                - align-items: center if flex-direction: row
+                - justify-content: center if flex-direction: column;
+        - Content inside the container
+            - box model properties
+                - padding: 200px 0;(applied on child container)
+            - flex-box
+                - padding: 200px 0;(applied on flex item)
+        - Tips:
+            - padding can be used to give illusion that the content has been centered, usually in anchor tags.
+
+*/
+
+:root {
+    /* Font size */
+    --text-sm: 1.2rem;
+    --text-base: 1.6rem;
+    --text-paragraph: 2rem;
+    --text-h5: 2.4rem;
+    --text-h4: 3.2rem;
+    --text-h3: 4rem;
+    --text-h2: 4.8rem;
+    --text-h1: 6.2rem;
+
+    /* font weights */
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+
+    /* line height */
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+
+    /* letter spacing */
+    --letter-spacing-tight: -2px;
+
+    /* font family */
+    --font-family: 'Poppins', sans-serif;
+
+    /* colors */
+    --primary-base: #339af0;
+    --primary-tint: #d0ebff;
+    --primary-shade: #1c7ed6;
+    --secondary-base: #9775fa;
+    --secondary-tint: #e5dbff;
+    --secondary-shade: #7048e8;
+    --tertiary-base: #ff922b;
+    --tertiary-tint: #ffe8cc;
+    --tertiary-shade: #f76707;
+    --grey-base: #495057;
+    --grey-tint: #f1f3f5;
+    --grey-shade: #212529;
+    --white: #ffffff;
+    --black: #000000;
+
+    /* miscellaneous */
+    --nav-height: 100px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* reset css */
+}
+
+html {
+    font-size: 62.5%;
+    /* because 62.5% of 16px = 10px, hence 1rem = 10px, here 16px is default font size of browser. We use 10px because it makes the other calculations easy*/
+    /* ALTER 10px / 16px = 62.5% */
+}
+
+body {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    color: var(--grey-base);
+}
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+    /* as if the broswer width is < 1200px then the element should have some space in left and right, so we set width: 90% */
+    margin: 0 auto;
+    /* to horizontally center the container */
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--grey-shade);
+}
+
+h1 {
+    font-size: var(--text-h1);
+}
+
+h2 {
+    font-size: var(--text-h2);
+}
+
+h3 {
+    font-size: var(--text-h3);
+}
+
+h4 {
+    font-size: var(--text-h4);
+}
+
+h5 {
+    font-size: var(--text-h5);
+}
+
+p {
+    font-size: var(--text-paragraph);
+}
+
+a {
+    text-decoration: none;
+    font-size: var(--text-base);
+    display: inline-block;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color: var(--grey-base);
+}
+
+ul {
+    list-style: none;
+}
+
+span {
+    display: inline-block;
+}
+
+.small-text {
+    font-size: var(--text-sm);
+}
+
+.btn {
+    font-weight: var(--font-weight-normal);
+    font-size: var(--text-base);
+    text-decoration: none;
+    padding: 1.5rem 3rem;
+    border-radius: 8px;
+    /* preferred to be in pixels */
+}
+
+.btn-primary:link,
+.btn-primary:visited {
+    color: var(--white);
+    background-color: var(--primary-base);
+    border: 2px solid var(--primary-base);
+    transition: 0.5s;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+    color: var(--white);
+    background-color: var(--primary-shade);
+    border: 2px solid var(--primary-shade);
+    transform: scale(1.05, 1.05);
+    box-shadow: 0px 3px 6px var(--grey-base);
+}
+
+.btn-primary-outline:link,
+.btn-primary-outline:visited {
+    color: var(--primary-base);
+    background-color: var(--white);
+    border: 2px solid var(--primary-base);
+    transition: 0.5s;
+}
+
+.btn-primary-outline:hover,
+.btn-primary-outline:active {
+    color: var(--primary-shade);
+    background-color: var(--white);
+    border: 2px solid var(--primary-shade);
+    transform: scale(1.05, 1.05);
+    box-shadow: 0px 3px 6px var(--grey-base);
+}
+
+.btn-secondary:link,
+.btn-secondary:visited {
+    color: var(--white);
+    background-color: var(--secondary-base);
+    border: 2px solid var(--secondary-base);
+    transition: 0.5s;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+    color: var(--white);
+    background-color: var(--secondary-shade);
+    border: 2px solid var(--secondary-shade);
+    transform: scale(1.05, 1.05);
+    box-shadow: 0px 3px 6px var(--grey-base);
+}
+
+.highlight {
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.highlight-primary {
+    background-color: var(--primary-base);
+}
+
+.highlight-secondary {
+    background-color: var(--secondary-base);
+}
+
+.highlight-tertiary {
+    background-color: var(--tertiary-base);
+}
+
+.logo-md {
+    width: 100px;
+}
+
+.logo-sm {
+    width: 80px;
+}
+
+.chat-container {
+    height: 7rem;
+    width: 7rem;
+    background-color: var(--primary-tint);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+.chat-icon {
+    width: 5rem;
+}
+
+.beta {
+    position: relative;
+    /* this is created so that for 'position' the reference point could be this class */
+}
+
+
+/* psuedo elements inject data after the page renders */
+.beta::after {
+    content: 'beta';
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.2rem;
+    background-color: var(--tertiary-base);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: var(--white);
+    transform: translate(70%, -70%);
+}
+
+/* z-index usage */
+/* .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 999;
+} */
+
+.navbar {
+    height: var(--nav-height);
+    margin-bottom: 20rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-btn-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.hero-section {
+    margin-bottom: 10rem;
+    height: calc(100vh -- var(--nav-height));
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-heading {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.hero-paragraph {
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+.hero-btn-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.cta-section {
+    margin-bottom: 30rem;
+    display: flex;
+    justify-content: center;
+}
+
+.cta-card {
+    text-align: center;
+    background-color: var(--primary-base);
+    max-width: 1000px;
+    width: 100%;
+    padding: 10rem 20rem;
+    border-radius: 20px;
+}
+
+.cta-heading {
+    margin-bottom: 3rem;
+    color: var(--white);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.social-icons-container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons {
+    width: 20px;
+}
+
+.heart-icon {
+    color: var(--secondary-base);
+}
+
+.features-section {
+    margin-bottom: 30rem;
+}
+
+.features-main-heading {
+    text-align: center;
+    margin-bottom: 8rem;
+}
+
+.features-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 15rem;
+    column-gap: 5rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.features-heading {
+    margin-bottom: 2rem;
+}
+
+.feature-img {
+    max-width: 400px;
+    width: 100%;
+        /* if we do not apply width 100% then when the broswer is < 400px, the image will overflow as it is inline element */
+}
+
+.feature-img-swap-order {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
