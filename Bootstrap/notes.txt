@@ -1,0 +1,7 @@
+- Disadvantages of bootstrap
+    - someone cannot set 75vh as a height and for that we need custom css.
+- Grid
+    - class="row" creates 'grid' layout
+    - has 12 column grid system
+    - bootstrap uses 'fexbox' to implement its grid system
+    - one use flexbox properties to align items in bootstrap grid
